@@ -13,7 +13,7 @@ node('linux') {
 	
 	stage('Deploy') {  
 
-			sh "aws s3 cp $WORKSPACE/Java-pipeline/ s3://jenkins-assignment9/${env.BRANCH_NAME}/ --recursive --exclude '*' --include '*.jar'"
+			sh "aws s3 cp $WORKSPACE/java-pipeline/ s3://jenkins-assignment9/${env.BRANCH_NAME}/ --recursive --exclude '*' --include '*.jar'"
 	}
 	
         stage('Report') {    
