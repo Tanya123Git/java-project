@@ -9,9 +9,9 @@ node('linux') {
 		sh 'ant -f build.xml -v'   
 	}   
 	stage('Deploy') {    
-		junit 'reports/*.xml'   
+		sh "aws s3 cp $WORKSPACE/Build/ s3://jenkins-assignment9/${env.BRANCH_NAME}/ --recursive --exclude '*' --include '*.jar'"
 	}
-  stage('Report') {    
-		junit 'reports/*.xml'   
+        stage('Report') {    
+		sh "aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins"  
 	}
 }
