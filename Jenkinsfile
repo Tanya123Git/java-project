@@ -12,7 +12,7 @@ node('linux') {
 	}   
 	
 	stage('Deploy') {  
-			sh("aws s3 cp /workspace/java-pipeline/dist/ https://s3.console.aws.amazon.com/s3/buckets/jenkins-assignment9/region=us-east-1 --recursive --exclude '*' --include '*.jar'")
+			sh("aws s3 cp /workspace/java-pipeline/dist/ s3://buckets/jenkins-assignment9/ --recursive --exclude '*' --include '*.jar'")
 	}
 	
         stage('Report') {    
