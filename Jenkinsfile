@@ -12,7 +12,7 @@ node('linux') {
 	}   
 	
 	stage('Deploy') {  
-			sh("aws s3 cp /workspace/java-pipeline/dist/rectangle-43.jar s3://buckets/jenkins-assignment9/ --recursive --exclude '*' --include '*.jar'")
+			sh("aws s3 cp /workspace/java-pipeline/build.xml:37: s3://buckets/jenkins-assignment9/ --recursive --exclude '*' --include '*.jar'")
 	}
 	
         stage('Report') {    
