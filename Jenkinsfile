@@ -11,11 +11,14 @@ node('linux') {
 			sh 'ant -f build.xml -v'   
 	}   
 	
-	stage('Deploy') {  
+	stage('Deploy') { 
 			sh "aws s3 cp /workspace/java-pipeline/dist/ s3://jenkins-assignment9/ --recursive --exclude '*' --include '*.jar'"
 	}
 	
-        stage('Report') {    
-			sh "aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins" 
+        stage('Report') { 
+		withAWS(credentials:'AWS_Credential')
+			{
+				sh "aws cloudformation describe-stack-resources --region us-east-1 --stack-name jenkins" 
+			}
 	}
 }
