@@ -12,7 +12,7 @@ node('linux') {
 	}   
 	
 	stage('Deploy') {  
-			sh("aws s3 cp $WORKSPACE/makedir/rectangle.jar/ s3://buckets/jenkins-assignment9/ --recursive --exclude '*' --include '*.jar'")
+			sh("aws s3 cp $WORKSPACE/${dist.dir}/rectangle-42.jar s3://buckets/jenkins-assignment9/ --recursive --exclude '*' --include '*.jar'")
 	}
 	
         stage('Report') {    
