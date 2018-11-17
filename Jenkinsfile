@@ -8,12 +8,12 @@ node('linux') {
 	}   
 	
 	stage('Build') { 
-			sh 'ant build.xml -v'   
+			sh 'ant -f build.xml -v'   
 	}   
 	
 	stage('Deploy') {  
 
-			sh "aws s3 cp $WORKSPACE/ s3://buckets/jenkins-assignment9/ --recursive --exclude '*' --include '*.jar'"
+			sh "aws s3 cp $WORKSPACE/Build s3://buckets/jenkins-assignment9/ --recursive --exclude '*' --include '*.jar'"
 	}
 	
         stage('Report') {    
