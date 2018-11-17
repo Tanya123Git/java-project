@@ -12,9 +12,7 @@ node('linux') {
 	}   
 	
 	stage('Deploy') {  
-			import jenkins.model.*
-                        jenkins = Jenkins.instance
-			sh "aws s3 cp $WORKSPACE/${dist.dir}/rectangle-${env.BUILD_NUMBER}.jar s3://buckets/jenkins-assignment9/ --recursive --exclude '*' --include '*.jar'"
+			sh "aws s3 cp $WORKSPACE/${dist.dir}/ s3://buckets/jenkins-assignment9/ --recursive --exclude '*' --include '*.jar'"
 	}
 	
         stage('Report') {    
